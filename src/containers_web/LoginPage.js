@@ -5,11 +5,9 @@ import {
     View,
     Text,
     Button,
+    CheckBox,
     Picker
   } from 'react-native';
-
-//   import {Picker} from '@react-native-community/picker';
-  import CheckBox from '@react-native-community/checkbox';
 
 import langs from "./../langs"
 
@@ -27,8 +25,8 @@ export const LoginPage = ({ onLogin, onSetLang }) => {
     
     useEffect(() => {
         const v = {}
-        if(login?.length < 1) v.login = langs(lang, "LoginValidation")
-        if(password?.length < 1) v.login = langs(lang, "PasswordValidation")
+        if(login.length < 1) v.login = langs(lang, "LoginValidation")
+        if(password.length < 1) v.login = langs(lang, "PasswordValidation")
         setValidation(v)
     }, [ login, password, lang, remember ])
 
@@ -38,26 +36,26 @@ export const LoginPage = ({ onLogin, onSetLang }) => {
         })
     }
 
-    return <View style={styles.loginContainer} testID="Authorization form">
+    return <View testID="Authorization form">
         <View style={styles.label}>
             <Text>{ langs(lang, "Login") }:</Text>
-            <TextInput style={styles.input} onChangeText={setLogin} value={ login } testID="Login input"/>
+            <TextInput style={styles.input} onChange={e => setLogin(e.target.value)} value={ login } testID="Login input"/><br/>
         </View>
         <View style={styles.label}>
             <Text>{ langs(lang, "Password") }:</Text>
-            <TextInput style={styles.input} onChangeText={setPassword} value={ password } testID="Password input" secureTextEntry={true}/>
+            <TextInput style={styles.input} onChange={e => setPassword(e.target.value)} value={ password } testID="Password input" secureTextEntry={true}/>
         </View>
         <View style={styles.loginOptions}>
             <View style={styles.optionLabel}>
-                <Text style={styles.optionLabelText}>{ langs(lang, "Language") }:</Text>
-                <Picker itemStyle={{fontSize: 13}} mode={Picker.MODE_DROPDOWN} style={styles.optionPicker} selectedValue={ lang } onValueChange={setLang} testID="Language select">
+                <Text>{ langs(lang, "Language") }:</Text>
+                <Picker style={styles.optionPicker} value={ lang } onChange={e => setLang(e.target.value)} testID="Language select">
                     <Picker.Item label="Русский" value="Russian" />
                     <Picker.Item label="English" value="English" />
                 </Picker>
             </View>
             <View style={styles.optionLabel}>
-                <Text style={styles.optionLabelText}>{ langs(lang, "Remember") }:</Text>
-                <CheckBox boxType={"square"} style={styles.CheckBox} selectedValue={ remember } onValueChange={e => setRemember(!remember)} testID="Remember me checkbox" type="checkbox"/> 
+                <CheckBox style={styles.CheckBox} value={ remember } onChange={e => setRemember(!remember)} testID="Remember me checkbox" type="checkbox"/> 
+                <Text>{ langs(lang, "Remember") }</Text>
             </View>
         </View>
         <View style={styles.submitWrapper}>
@@ -67,48 +65,25 @@ export const LoginPage = ({ onLogin, onSetLang }) => {
 }
 
 const styles = StyleSheet.create({
-    loginContainer: {
-        alignItems: "center",
-        display: "flex",
-        justifyContent: "center",
-        width: "100%"
-    },
     label: {
         textAlign: "left",
         flexDirection: "column",
         fontSize: 13,
         marginTop: 8,
         display: "flex",
-        alignSelf: "stretch",
     },
     optionLabel: {
         textAlign: "left",
         flexDirection: "row",
         fontSize: 13,
-        marginTop: 32,
-        height: 25,
-        // marginLeft: 16,
-        alignItems: "center",
-        alignSelf: "stretch",
-        // overflow: "hidden",
-        // backgroundColor: "green"
-    },
-    CheckBox: {
-        marginRight: 8,
-        fontSize: 10,
-        height: 20,
+        marginTop: 8,
         marginLeft: 16
     },
+    CheckBox: {
+        marginRight: 8
+    },
     optionPicker: {
-        marginRight: 32,
-        marginLeft: 16,
-        width: 150,
-        height: 70,
-        fontSize: 12,
-        justifyContent: "center",
-        // backgroundColor: "blue",
-        zIndex: 0,
-        // overflow: "hidden",
+        marginLeft: 8
     },
     input: {
         fontSize: 15,
@@ -116,10 +91,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         marginTop: 8,
         padding: 4,
-        marginLeft: 16,
-        alignSelf: "stretch",
-        zIndex: 10,
-        
+        marginLeft: 16
     },
     loginButton: {
         borderColor: "gray",
@@ -130,25 +102,13 @@ const styles = StyleSheet.create({
     submitWrapper: {
         marginTop: 16,
         marginLeft: 16,
-        borderWidth: 1,
-        borderColor: "gray",
-        alignSelf: "stretch",
     },
     loginOptions: {
-        flexDirection: "column",
+        flexDirection: "row",
         justifyContent: "space-between",
         marginTop: 32,
-        // marginBottom: 32,
-        height: 130,
+        marginBottom: 32,
         display: "flex",
         alignItems: "center",
-        zIndex: 1,
-        marginBottom: 32,
-        // backgroundColor: "red",
-        overflow: "hidden"
     },
-    optionLabelText: {
-        width: 120,
-        textAlign: "right"
-    }
   })

@@ -1,50 +1,71 @@
-import React, { useState, useEffect } from 'react'
+/**
+ * Sample React Native App
+ * https://github.com/facebook/react-native
+ *
+ * @format
+ * @flow strict-local
+ */
 
+import React, { useState, useEffect } from 'react'
 import {
-  // AppRegistry,
+  SafeAreaView,
   StyleSheet,
+  ScrollView,
   View,
   Text,
-  Button,
+  StatusBar,
   TouchableOpacity
-} from 'react-native'
+} from 'react-native';
+
 
 import { LoginPage } from "./containers/LoginPage"
 import { UserPage } from "./containers/UserPage"
 
 import langs from "./langs"
 
-function App() {
+const App: () => React$Node = () => {
   const [ user, setUser ] = useState()
   const [ lang, setLang ] = useState()
 
   useEffect(() => {
-    document.querySelector("title").innerText = user ? "Main page" : "Login page"
+    // document.querySelector("title").innerText = user ? "Main page" : "Login page"
     setLang(user?.lang)
   }, [ user ])
 
   const logoutHandler = () => {
     setUser()
   }
-
   return (
-    <View style={ styles.appContainer }>
-      <Text style={styles.appHeader} testID="Header label">{ user ? `${langs(user.lang, "Hello")}, ${ user.login }!` : langs(lang, "Not authorized")}</Text>
-      {!user || <TouchableOpacity testID="Logout" style={ styles.logout } onPress={logoutHandler}>
-          <Text style={ styles.logoutText }>{ langs(lang, "logout")} </Text>
-        </TouchableOpacity>
-        }
-      <View style={styles.appContent} testID="Content block">
-        { user 
-          ? <UserPage user={user}/> 
-          : <LoginPage onLogin={ setUser } onSetLang={setLang} />
-        }
-      </View>
-    </View>
+    <>
+      <StatusBar barStyle="dark-content" />
+      <SafeAreaView>
+        <ScrollView
+          contentInsetAdjustmentBehavior="automatic"
+          style={styles.scrollView}>
+          <View style={ styles.appContainer }>
+          <View style={styles.appHeader}><Text style={styles.appHeaderText} testID="Header label">{ user ? `${langs(user.lang, "Hello")}, ${ user.login }!` : langs(lang, "Not authorized")}</Text></View>
+            {!user || <TouchableOpacity testID="Logout" style={ styles.logout } onPress={logoutHandler}>
+                <Text style={ styles.logoutText }>{ langs(lang, "logout")} </Text>
+              </TouchableOpacity>
+              }
+            <View style={styles.appContent} testID="Content block">
+              { user 
+                ? <UserPage user={user}/> 
+                : <LoginPage onLogin={ setUser } onSetLang={setLang} />
+              }
+            </View>
+          </View>
+        </ScrollView>
+      </SafeAreaView>
+    </>
   )
 }
 
 const styles = StyleSheet.create({
+  scrollView: {
+    backgroundColor: "white",
+    height: "100%"
+  },
   appContainer: {
     flex: 1,
     textAlign: "center",
@@ -52,22 +73,27 @@ const styles = StyleSheet.create({
     fontFamily: `-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif`
   },
   appContent: {
-    width: 300,
+    width: 310,
     marginTop: 32,
     flexWrap: "wrap",
     flexDirection: "column",
-    alignSelf: "center"
+    alignSelf: "center",
+    // backgroundColor: "red"
   },
   appHeader: {
     display: "flex",
     height: 60,
+    alignSelf: "stretch",
+    textAlign: "center",
     backgroundColor: "#282c34",
     textAlignVertical: "center",
-    fontSize: 28,
-    color: "white",
     alignItems: "center",
     justifyContent: "center",
-    paddingLeft: 16
+    textAlignVertical: "center",
+  },
+  appHeaderText: {
+    fontSize: 22,
+    color: "white",
   },
   logout: {
     position: "absolute",
@@ -83,11 +109,11 @@ const styles = StyleSheet.create({
     color: "white",
     fontWeight: "bold",
     fontSize: 16,
-    paddingHorizontal: 32
+    paddingHorizontal: 24
   },
   logoutText: {
     color: "white",
   }
 })
 
-export default App
+export default App;

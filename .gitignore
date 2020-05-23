@@ -1,34 +1,10 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
-# dependencies
-/node_modules
-/.pnp
-.pnp.js
-
-# testing
-/coverage
-
-# production
-
-**/cache
-# misc
-.DS_Store
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
 # OSX
 #
 .DS_Store
 
 # Xcode
 #
-# build/
+build/
 *.pbxuser
 !default.pbxuser
 *.mode1v3
@@ -47,7 +23,7 @@ DerivedData
 
 # Android/IntelliJ
 #
-# build/
+build/
 .idea
 .gradle
 local.properties
@@ -81,5 +57,3 @@ buck-out/
 
 # CocoaPods
 /ios/Pods/
-
-# !build/web
