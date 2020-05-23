@@ -1,12 +1,4 @@
 {
   "name": "QaApp",
-  "displayName": "QaApp",
-  "expo": {
-    "sdkVersion": "31.0.0",
-    "name": "random-people",
-    "slug": "random-people",
-    "version": "0.1.0",
-    "description": "An application for displaying random people",
-    "primaryColor": "#ff8179"
-  }
+  "displayName": "QaApp"
 }
