@@ -1,0 +1,16 @@
+{
+    "name": "QA-guru",
+    "displayName": "QA-guru",
+    "expo": {
+      "sdkVersion": "37.0.0",
+      "name": "QA-guru",
+      "slug": "QA-guru",
+      "version": "0.1.0",
+      "description": "QA-guru test app",
+      "primaryColor": "#ff8179",
+      "platforms": ["ios", "android"],
+      "android": {
+        "package": "ru.artsector.qaGuru"
+      }
+    }
+  }
