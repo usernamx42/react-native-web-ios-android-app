@@ -19,7 +19,7 @@ function App() {
   const [ lang, setLang ] = useState()
 
   useEffect(() => {
-    // document.querySelector("title").innerText = user ? "Main page" : "Login page"
+    document.querySelector("title").innerText = user ? "Main page" : "Login page"
     setLang(user?.lang)
   }, [ user ])
 
