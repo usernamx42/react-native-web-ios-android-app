@@ -38,30 +38,30 @@ export const LoginPage = ({ onLogin, onSetLang }) => {
         })
     }
 
-    return <View style={styles.loginContainer} testID="Authorization form">
+    return <View style={styles.loginContainer} accessibilityLabel="Authorization form" testID="Authorization form">
         <View style={styles.label}>
             <Text>{ langs(lang, "Login") }:</Text>
-            <TextInput style={styles.input} onChangeText={setLogin} value={ login } testID="Login input"/>
+            <TextInput style={styles.input} onChangeText={setLogin} value={ login } accessibilityLabel="Login input" testID="Login input"/>
         </View>
         <View style={styles.label}>
             <Text>{ langs(lang, "Password") }:</Text>
-            <TextInput style={styles.input} onChangeText={setPassword} value={ password } testID="Password input" secureTextEntry={true}/>
+            <TextInput style={styles.input} onChangeText={setPassword} value={ password } accessibilityLabel="Password input" testID="Password input" secureTextEntry={true}/>
         </View>
         <View style={styles.loginOptions}>
             <View style={styles.optionLabel}>
                 <Text style={styles.optionLabelText}>{ langs(lang, "Language") }:</Text>
-                <Picker itemStyle={{fontSize: 13}} mode={Picker.MODE_DROPDOWN} style={styles.optionPicker} selectedValue={ lang } onValueChange={setLang} testID="Language select">
+                <Picker itemStyle={{fontSize: 13}} mode={Picker.MODE_DROPDOWN} style={styles.optionPicker} selectedValue={ lang } onValueChange={setLang} accessibilityLabel="Language select" testID="Language select">
                     <Picker.Item label="Русский" value="Russian" />
                     <Picker.Item label="English" value="English" />
                 </Picker>
             </View>
             <View style={styles.optionLabel}>
                 <Text style={styles.optionLabelText}>{ langs(lang, "Remember") }:</Text>
-                <CheckBox boxType={"square"} style={styles.CheckBox} selectedValue={ remember } onValueChange={e => setRemember(!remember)} testID="Remember me checkbox" type="checkbox"/> 
+                <CheckBox boxType={"square"} style={styles.CheckBox} selectedValue={ remember } onValueChange={e => setRemember(!remember)} accessibilityLabel="Remember me checkbox" testID="Remember me checkbox" type="checkbox"/> 
             </View>
         </View>
         <View style={styles.submitWrapper}>
-            <Button style={styles.loginButton} disabled={Object.keys(validation).length > 0} testID="Login button" onPress={ handleLogin } title={ langs(lang, "Submit") }/>
+            <Button style={styles.loginButton} disabled={Object.keys(validation).length > 0} accessibilityLabel="Login button" testID="Login button" onPress={ handleLogin } title={ langs(lang, "Submit") }/>
         </View>
     </View>
 }

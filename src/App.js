@@ -43,12 +43,13 @@ const App: () => React$Node = () => {
           contentInsetAdjustmentBehavior="automatic"
           style={styles.scrollView}>
           <View style={ styles.appContainer }>
-          <View style={styles.appHeader}><Text style={styles.appHeaderText} testID="Header label">{ user ? `${langs(user.lang, "Hello")}, ${ user.login }!` : langs(lang, "Not authorized")}</Text></View>
-            {!user || <TouchableOpacity testID="Logout" style={ styles.logout } onPress={logoutHandler}>
+          <View style={styles.appHeader}>
+            <Text style={styles.appHeaderText} accessibilityLabel="Header label" testID="Header label">{ user ? `${langs(user.lang, "Hello")}, ${ user.login }!` : langs(lang, "Not authorized")}</Text></View>
+            {!user || <TouchableOpacity accessibilityLabel="Logout"  testID="Logout" style={ styles.logout } onPress={logoutHandler}>
                 <Text style={ styles.logoutText }>{ langs(lang, "logout")} </Text>
               </TouchableOpacity>
               }
-            <View style={styles.appContent} testID="Content block">
+            <View style={styles.appContent} accessibilityLabel="Content block" testID="Content block">
               { user 
                 ? <UserPage user={user}/> 
                 : <LoginPage onLogin={ setUser } onSetLang={setLang} />

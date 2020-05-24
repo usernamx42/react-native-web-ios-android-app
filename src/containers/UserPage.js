@@ -9,8 +9,8 @@ import {
 
 export const UserPage = ({ user }) => {
     return <View  style={ styles.userContainer }>
-            <Text style={ styles.userContent } testID="Private content">Here is your private content #1</Text>
-            <Text style={ styles.userContent } testID="Private content">and private content #2</Text>
+            <Text style={ styles.userContent } accessibilityLabel="Private content" testID="Private content">Here is your private content #1</Text>
+            <Text style={ styles.userContent } accessibilityLabel="Private content" testID="Private content">and private content #2</Text>
             {/* <Text>{langs(user.lang, "Hello")}, { user.login }!</Text> */}
         </View>
 }
