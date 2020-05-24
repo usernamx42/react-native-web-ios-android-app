@@ -129,7 +129,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.qaapp"
+        applicationId "cloud.autotests.android.app"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

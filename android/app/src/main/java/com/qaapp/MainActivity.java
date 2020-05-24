@@ -1,4 +1,4 @@
-package com.qaapp;
+package cloud.autotests.android.app;
 
 import com.facebook.react.ReactActivity;
 
